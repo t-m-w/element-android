@@ -102,11 +102,7 @@ internal class DefaultSetReadMarkersTask @Inject constructor(
                     globalErrorReceiver,
                     canRetry = true
             ) {
-                if (markers[READ_MARKER] == null) {
-                    if (readReceiptEventId != null) {
-                        roomAPI.sendReceipt(params.roomId, READ_RECEIPT, readReceiptEventId)
-                    }
-                } else {
+                if (markers[READ_MARKER] != null) {
                     // "m.fully_read" value is mandatory to make this call
                     roomAPI.sendReadMarker(params.roomId, markers)
                 }
